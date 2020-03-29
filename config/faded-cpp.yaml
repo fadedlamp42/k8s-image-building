@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: build-job
+spec:
+  template:
+    metadata:
+      name: custom-build
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: build-container
+          image: faded-cpp:1.0
+          command: ["make", "-C", "host-src"]
+          volumeMounts:
+            - mountPath: /host-src
+              name: host-src
+          env:
+            - name: TERM
+              value: "xterm-256color"
+      volumes:
+        - name: host-src
+          hostPath:
+            path: /src
