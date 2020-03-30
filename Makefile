@@ -3,6 +3,8 @@ init: mount
 	@chmod +x script/clean.sh
 	@chmod +x script/debug.sh
 	@chmod +x script/unmount.sh
+	@chmod +x script/env.sh
+	@./script/env.sh
 	@echo "Finished initialization, run make test for result"
 
 test: apply
